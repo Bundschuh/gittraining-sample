@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.eclipse.example.calc;
 
+import org.eclipse.example.calc.internal.exceptions.ZeroDivisionException;
+
 /**
  * Binary operation interface
  */
@@ -16,6 +18,7 @@ public interface BinaryOperation extends Operation {
 	 * @param arg1 first parameter
 	 * @param arg2 second parameter
 	 * @return result of binary operation
+	 * @throws ZeroDivisionException 
 	 */
-	public float perform(float arg1, float arg2);
+	public float perform(float arg1, float arg2) throws ZeroDivisionException;
 }
