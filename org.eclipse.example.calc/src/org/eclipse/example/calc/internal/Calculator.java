@@ -42,6 +42,9 @@ public class Calculator {
 		new Square();
 	}
 
+	/**
+	 * @param cmdName Name of the command
+	 */
 	private void calculate(String cmdName) {
 		float curValue;
 		float newValue = 0;
