@@ -13,8 +13,11 @@ import org.eclipse.example.calc.BinaryOperation;
 import org.eclipse.example.calc.Operation;
 import org.eclipse.example.calc.Operations;
 import org.eclipse.example.calc.UnaryOperation;
+import org.eclipse.example.calc.internal.exceptions.ZeroDivisionException;
+import org.eclipse.example.calc.internal.operations.Divide;
 import org.eclipse.example.calc.internal.operations.Equals;
 import org.eclipse.example.calc.internal.operations.Minus;
+import org.eclipse.example.calc.internal.operations.Multiply;
 import org.eclipse.example.calc.internal.operations.Plus;
 import org.eclipse.example.calc.internal.operations.Square;
 
@@ -40,12 +43,14 @@ public class Calculator {
 		new Minus();
 		new Plus();
 		new Square();
+		new Multiply();
+		new Divide();
 	}
 
 	/**
 	 * @param cmdName Name of the command
 	 */
-	private void calculate(String cmdName) {
+	private void calculate(String cmdName) throws ZeroDivisionException {
 		float curValue;
 		float newValue = 0;
 
@@ -93,7 +98,13 @@ public class Calculator {
 
 	public void handleButtonClick(String str) {
 		if (isCommand(str)) {
-			calculate(str);
+			try {
+				calculate(str);
+			} catch (ZeroDivisionException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getLocalizedMessage());
+				e.printStackTrace();
+			}
 		} else {
 			char digit = (str.toCharArray())[0];
 			if (Character.isDigit(digit) || digit == '.') {

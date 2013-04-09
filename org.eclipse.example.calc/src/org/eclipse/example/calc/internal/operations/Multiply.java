@@ -6,19 +6,23 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.eclipse.example.calc;
+package org.eclipse.example.calc.internal.operations;
 
-import org.eclipse.example.calc.internal.exceptions.ZeroDivisionException;
+import org.eclipse.example.calc.BinaryOperation;
 
 /**
- * Binary operation interface
+ * Multiply operation
  */
-public interface BinaryOperation extends Operation {
-	/**
-	 * @param arg1 first parameter
-	 * @param arg2 second parameter
-	 * @return result of binary operation
-	 * @throws ZeroDivisionException 
-	 */
-	public float perform(float arg1, float arg2) throws ZeroDivisionException;
+public class Multiply extends AbstractOperation implements BinaryOperation {
+
+	@Override
+	public String getName() {
+		return "*";
+	}
+
+	@Override
+	public float perform(float arg1, float arg2) {
+		return arg1 * arg2;
+	}
+
 }
